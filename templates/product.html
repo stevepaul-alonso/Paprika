@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product</title>
+	<link rel="icon" type="image/png" href={{url_for('static', filename = 'img/common/icon_p.png')}}>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/product.css')}}">
+	<script src="{{url_for('static', filename='js/lib/jquery-3.2.1.min.js')}}"></script>
+</head>
+<body>
+	<div class="message center_horizontal">
+		<p>message</p>
+	</div>
+	<div class="navbar">
+		<a href='/'><div class="logo"><img class="center_vertical" src="{{url_for('static', filename='img/common/icon.png')}}"></div></a>
+        <div class="search_box"></div>
+		<div class="cart">
+			{% if name == 'none' %}
+				<div class="login center_vertical"><p>Login</p></div>
+				<div class="signup center_vertical"><p>Signup</p></div>
+			{% endif %}
+			{% if name != 'none' %}
+				<img src= "{{url_for('static', filename=image)}}" class="avatar center_vertical">
+			{% endif %}
+			<a href="/cart"><img class="cart_img" src="{{url_for('static', filename='img/common/cart.png')}}"></a>
+			<div class="cart_dot"> {{qty}} </div>
+		</div>
+	</div>
+	<main>
+		<div class="login_box center" id="login">
+			<h1> Login </h1>
+			<input  type="text" name="log_username" class="box" placeholder="username" id="log_username"><br>
+  			<input  type="password" name="log_password" class="box" placeholder="password" id="log_password"><br>
+  			<div class="login_but"	id="log_sub"> Submit </div>
+  			<div class="login_but"	id="log_can"> Cancel </div>
+		</div>
+		<div class="signup_box center" id="signup">
+			<h1> Signup </h1>
+			<input  type="text" name="sign_username" class="box" placeholder="username" id="sign_username"><br>
+  			<input  type="password" name="sign_password" class="box" placeholder="password" id="sign_password"><br>
+  			<div class="login_but"	id="sign_sub"> Submit </div>
+  			<div class="login_but"	id="sign_can"> Cancel </div>
+		</div>
+        <div class="major">
+            <div class="photos">
+                {% for photo in info.photos %}
+                    <img class="photo" src=https://s3.us-east-2.amazonaws.com/paprikasteve/{{photo}}.jpg>
+                {% endfor %}
+                
+            </div>
+            <div class="image">
+                <img class="main_photo center" src=https://s3.us-east-2.amazonaws.com/paprikasteve/{{info.photos[0]}}.jpg>
+            </div>
+            <div class="description">
+                <div class="add_to_cart_box">
+                    <div class="cart_button"> Add to cart </div>
+                </div>
+                <h1>{{info.name}}</h1>
+                {% if info.rating == 1 %}
+                    <p class="star"> ★ </p>
+                {% endif %}
+                {% if info.rating == 2 %}
+                    <p class="star"> ★★ </p>
+                {% endif %}
+                {% if info.rating == 3 %}
+                    <p class="star"> ★★★ </p>
+                {% endif %}
+                {% if info.rating == 4 %}
+                    <p class="star"> ★★★★ </p>
+                {% endif %}
+                {% if info.rating == 5 %}
+                    <p class="star"> ★★★★★ </p>
+                {% endif %}
+                <p> By <b>{{info.brand}}</b> </p>
+                <p class="desc_price"> ${{info.price}} </p>
+                <p>{{info.description}}</p>
+                <div class="rating">
+                    <div class="rate_button"><p class="star" style="text-decoration:underline;cursor:pointer;"> ★ Rate this </p></div>
+                </div>
+            </div>
+        </div>
+        <div class="rating_box center" id="rating_box">
+            <h1 style="margin-top:5vh"> Rate </h1>
+            <input type="number" class="box" id="rate_val" value=1 style="text-align:center" min="1" max="5">
+            <div class="login_but"  id="rating_sub"> Submit </div>
+            <div class="login_but"  id="rating_can"> Cancel </div>
+        </div>
+	</main>
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+        /*--------------------------------------------------------------------------------------------------------- */
+        /*--------------------------------------------   Login Functions ------------------------------------------ */
+        /*--------------------------------------------------------------------------------------------------------- */
+
+        /* ------------------------------ Shows login popup box when login button is clicked ---------------------- */
+        $('.login').click(function(){
+        	$('#login').css('display', 'block');
+        });
+        /* --------------------------------------- Submit login info to server ------------------------------------ */
+        $('#log_sub').click(function(){
+        	$.ajax({
+        		url: '/login',
+        		method: 'POST',
+        		data: {'username': $('#log_username').val(), 'password': $('#log_password').val()}
+        	}).done(function(data){
+        		if (data == 'success'){
+        			$('#login').css('display', 'none');
+        			location.reload();
+        		}
+        		else{
+        			$('.message').text(data);
+        			$('.message').css('display', 'block');
+        			setTimeout(function(){ $('.message').css('display', 'none'); }, 3000);
+        			$('#login').css('display', 'none');
+        		}
+        	})
+        });
+
+        /* ---------------------------- Hide login popup when cancel is clicked ------------------------------------ */     
+        $('#log_can').click(function(){
+        	$('#login').css('display', 'none');
+        });
+
+        /*--------------------------------------------------------------------------------------------------------- */
+        /*--------------------------------------------   SignUp Functions ----------------------------------------- */
+        /*--------------------------------------------------------------------------------------------------------- */
+
+        /* ------------------------------ Shows signup popup box when signup button is clicked --------------------- */
+        $('.signup').click(function(){
+        	$('#signup').css('display', 'block');
+        });
+
+        /* --------------------------------------- Submit signup info to server ------------------------------------ */
+        $('#sign_sub').click(function(){
+        	$.ajax({
+        		url: '/signup',
+        		method: 'POST',
+        		data: {'username': $('#sign_username').val(), 'password': $('#sign_password').val()}
+        	}).done(function(data){
+        		if (data == 'success'){
+        			$('#signup').css('display', 'none');
+        			location.reload();
+        		}
+        		else{
+        			$('.message').text(data);
+        			$('.message').css('display', 'block');
+        			setTimeout(function(){ $('.message').css('display', 'none'); }, 3000);
+        			$('#signup').css('display', 'none');
+        		}
+        	})
+        });
+
+        /* ---------------------------- Hide signup popup when cancel is clicked ------------------------------------ */
+        $('#sign_can').click(function(){
+        	$('#signup').css('display', 'none');
+        });
+
+        /* ------------------------------ Shows rating popup box when Rate button is clicked --------------------- */
+        $('.rate_button').click(function(){
+            $('.rating_box').css('display', 'block');
+        });
+        /* --------------------------------------- Sends rating info to server ------------------------------------ */
+        $('#rating_sub').click(function(){
+            var product_id = "{{info.cuisine_id}}"
+            $.ajax({
+                url: '/rate',
+                method: 'POST',
+                data: {'product_id': product_id, 'rating': $('#rate_val').val()}
+            }).done(function(data){
+                $('.message').text(data);
+                $('.message').css('display', 'block');
+                setTimeout(function(){ $('.message').css('display', 'none'); }, 3000);
+                $('.rating_box').css('display', 'none');
+            });
+        });
+        /* ---------------------------- Hide rating popup when cancel is clicked ------------------------------------ */
+        $('#rating_can').click(function(){
+            $('.rating_box').css('display', 'none');
+        });
+        /* ---------------------------------------- Adds selected item to cart on click ----------------------------- */
+        var add_to_cart_func = function(){
+        	$('.cart_button').click(function(e){
+	        	console.log("clicked");
+	        	product_id = "{{info.cuisine_id}}";
+	        	total_amount = "$"+"{{info.price}}";
+                console.log(product_id, total_amount);
+	        	$.ajax({
+	        		url:'/add_to_cart',
+	        		method: 'POST',
+	        		data: {'product_id': product_id, 'total_amount': total_amount }
+	        	}).done(function(data){
+	        		$('.message').text(data);
+	        		$('.message').css('display', 'block');
+	        		setTimeout(function(){ $('.message').css('display', 'none'); }, 3000);
+	        		if(data == 'Successfully added to cart'){
+	        			var cart_count = parseInt($('.cart_dot').text()) + 1;
+	        			$('.cart_dot').text(cart_count);
+	        		}
+	        	})
+	        });
+        }
+
+        add_to_cart_func();
+
+        $('.photo').click(function(e){
+            var image = $(e.currentTarget).attr('src');
+            $('.main_photo').attr('src', image);
+
+        })
+	});
+</script>
+</html>

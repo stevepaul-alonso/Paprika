@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Add products </title>
+	<link rel="icon" type="image/png" href={{url_for('static', filename = 'img/common/icon_p.png')}}>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/add_products.css')}}">
+	<script src="{{url_for('static', filename='js/lib/jquery-3.2.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/add_products.js')}}"></script>
+</head>
+<body>
+	<div class="message center_horizontal">
+		<p>message</p>
+	</div>
+	<div class="navbar">
+		<div class="logo"><img class="center_vertical" src="{{url_for('static', filename='img/common/icon.png')}}"></div>
+	</div>
+	<main>
+		<div class="product_details">
+			<label for="name" class="labels"> PRODUCT NAME </label><br>
+			<input type="text" class="input_box" name="name" id="name" maxlength="100" autocomplete="false"><br>
+			<label for="category" class="labels"> CUISINE </label><br>
+			<input type="text" class="input_box" name="category" id="category" maxlength="100" autocomplete="false"><br>
+			<label for="brand" class="labels"> RESTAURANT </label><br>
+			<input type="text" class="input_box" name="brand" id="brand" maxlength="100" autocomplete="false"><br>
+			<label for="price" class="labels"> PRICE </label><br>
+			<input type="text" class="input_box" name="price" id="price" maxlength="100" autocomplete="false"><br>
+			<label for="quantity" class="labels"> QUANTITY </label><br>
+			<input type="text" class="input_box" name="quantity" id="quantity" maxlength="100" autocomplete="false"><br>
+			<label for="description" class="labels"> DESCRIPTION </label><br>
+			<textarea  class="input_box" name="description" id="description" maxlength="2000" autocomplete="false"></textarea><br>
+		</div>
+		<div class="product_images">
+			<form id = "upload_form" action="/photo_upload" method = "POST" enctype = "multipart/form-data">
+				<input type="text" class="hidden" name="name_base" id="name_base">
+	            <input type= "file" name= "image1" id = "image1" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image1_label" for="image1"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+
+	            <input type= "file" name= "image2" id = "image2" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image2_label" for="image2"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+
+	            <input type= "file" name= "image3" id = "image3" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image3_label" for="image3"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+
+	            <input type= "file" name= "image4" id = "image4" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image4_label" for="image4"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+
+	            <input type= "file" name= "image5" id = "image5" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image5_label" for="image5"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+
+	            <input type= "file" name= "image6" id = "image6" class = "uploaded_img hidden" accept = "image/*">
+	            <label class="img_label" id="image6_label" for="image6"><div class="add_image"><p class="add_text center"> Add Image </p></div></label>
+	        </form>
+
+            <div class="footer_buttons">
+            	<div class="footer_button"><div id="cancel" class="center">Cancel</div></div>
+            	<div class="footer_button"><div id="submit" class="center">Submit</div></div>
+            </div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+	html{font-family: 'Roboto', sans-serif;}
+	body{text-align:center}
+	@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;src: local('Roboto Medium'), local('Roboto-Medium'), url('/static/fonts/roboto1.woff2') format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+	body{background:#2ac7b2; }
+	.login_box{width:40vw;height:70vh;margin-left:30vw;margin-top:15vh;text-align:center}
+	.input_box{width:30vw;height:5vh;border:none;border-bottom:1px solid #f5f0f0;padding:2vh 0 0 0;outline:none;background: rgba(0,0,0,0);color:#fff;font-size: 3.5vh;margin-bottom:3vh;letter-spacing:1px}
+	#logo{max-width:14vw;margin-bottom:6vh}
+	.labels{font-size:2.6vh;margin-top:4vh;margin-left:5vw;color:#cad1d8;letter-spacing:1px;float:left;}
+	#submit_button{width:30vw;height:8vh;background-color:#fff; color:#2ac7b2;border:none;font-size:4vh;letter-spacing:1px;cursor:pointer;margin-top: 4vh}
+	#submit_button:hover{background-color:#3a5b9a;color:#fff;}
+	#submit_button:active{outline:none;width:29vw;height:7.6vh;}
+	.message{background-color:#fb0;padding:0vh 5vh;display:inline-block;}

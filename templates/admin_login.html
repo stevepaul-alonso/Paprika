@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Admin Login</title>
+	<link rel="icon" type="image/png" href={{url_for('static', filename = 'img/common/icon_p.png')}}>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_login.css')}}">
+	<script src="{{url_for('static', filename='js/lib/jquery-3.2.1.min.js')}}"></script>
+</head>
+<body>
+	<form action="/admin-auth" method='POST'>
+		<div class="login_box">
+			<img src={{url_for('static', filename='img/common/icon.png')}} id="logo"><br>
+			<label for="admin_username" class="labels"> ADMIN USERNAME </label><br>
+			<input type="text" class="input_box" name="admin_username" id="admin_username" maxlength="100" autocomplete="false"><br>
+			<label for="admin_password" class="labels"> ADMIN PASSWORD </label><br>
+			<input type="password" class="input_box" name="admin_password" id="admin_password" maxlength="30" autocomplete="false">
+			<input type="submit" id="submit_button" value="Submit"> 
+		</div>
+	</form><br>
+
+	{% if message != 'none' %}
+	<div class="message">
+		<p>{{message}}</p>
+	</div>
+	{% endif %}
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#admin_username').focus();
+		$.ajax({
+			url: '/delete_warning'
+		});
+		setTimeout(function(){ $('.message').hide() }, 4000);
+	});
+</script>
+</html>

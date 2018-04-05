@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Homepage | Paprika</title>
+	<link rel="icon" type="image/png" href={{url_for('static', filename = 'img/common/icon_p.png')}}>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/homepage.css')}}">
+	<script src="{{url_for('static', filename='js/lib/jquery-3.2.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/homepage.js')}}"></script>
+</head>
+<body>
+	<div class="message center_horizontal">
+		<p>message</p>
+	</div>
+	<div class="navbar">
+		<div class="logo"><img class="center_vertical" src="{{url_for('static', filename='img/common/icon.png')}}"></div>
+		<div class="search_box">
+			<div class="category_dropdown box center_vertical">
+				<p style="line-height:4vh" id='current_category'>All</p>
+				<p id="down_arrow"> ▼ </p>
+			</div>
+			<input class="box search_input center_vertical">
+			<div class="search_img center_vertical">
+				<div class="search_img_wrapper">
+					<img class="center" src="{{url_for('static', filename='img/common/search.png')}}">
+				</div>
+			</div>
+			<div class="options"></div>
+		</div>
+		<div class="cart">
+			{% if name == 'none' %}
+				<div class="login center_vertical"><p>Login</p></div>
+				<div class="signup center_vertical"><p>Signup</p></div>
+			{% endif %}
+			{% if name != 'none' %}
+				<img src= "{{url_for('static', filename=image)}}" class="avatar center_vertical">
+			{% endif %}
+			<a href="/cart"><img class="cart_img" src="{{url_for('static', filename='img/common/cart.png')}}"></a>
+			<div class="cart_dot"> {{qty}} </div>
+		</div>
+	</div>
+	<main>
+		<div class="welcome_box center">
+			<img class="center_horizontal welcome_logo" src="{{url_for('static', filename='img/common/paprika.jpg')}}">
+			<h1> Welcome to Paprika </h1>
+			<p> <b>Paprika</b> is a simulation of online food delivery service. The products displayed here are not real and you cannot purchase anything. This was created purely for educational purpose. You can download the code from <a href="#">from here </a><br><br><br> Start by searching your favourite cuisine. <b> Bon appétit </b></p><br><br><br>
+			<p> Developed by <br> <a href="#"> Steve Paul </a></p></div>
+		</div>
+		<div class="login_box center" id="login">
+			<h1> Login </h1>
+			<input  type="text" name="log_username" class="box" placeholder="username" id="log_username"><br>
+  			<input  type="password" name="log_password" class="box" placeholder="password" id="log_password"><br>
+  			<div class="login_but"	id="log_sub"> Submit </div>
+  			<div class="login_but"	id="log_can"> Cancel </div>
+		</div>
+		<div class="signup_box center" id="signup">
+			<h1> Signup </h1>
+			<input  type="text" name="sign_username" class="box" placeholder="username" id="sign_username"><br>
+  			<input  type="password" name="sign_password" class="box" placeholder="password" id="sign_password"><br>
+  			<div class="login_but"	id="sign_sub"> Submit </div>
+  			<div class="login_but"	id="sign_can"> Cancel </div>
+		</div>
+		<div class="filter_box">
+			<h1> Refine By </h1>
+			<div class="price_filter">
+				<p class="filter_header"> Price </p>
+				<input  type="radio" name="price" class="base" value="any" checked><p class="radio_text">Any</p><br>
+  				<input  type="radio" name="price" value="0"><p class="radio_text">Less than $10</p><br>
+  				<input  type="radio" name="price" value="10"><p class="radio_text">$10 - $30</p><br>
+  				<input  type="radio" name="price" value="30"><p class="radio_text">Greater than $30</p><br>
+			</div>
+			<div class="brand_filter">
+				<p class="filter_header"> Brand </p>
+				<div class="brand_box">
+					<input  type="radio" name="brand" class="base" value="any" checked><p class="radio_text">Any</p><br>
+				</div>
+			</div>
+			<div class="rating_filter">
+				<p class="filter_header"> Rating </p>
+				<input  type="radio" name="rating" class="base" value="any" checked><p class="radio_text">Any</p><br>
+				<input  type="radio" name="rating" value="1"><p class="radio_text">1 Star <b class="star">★</b></p><br>
+				<input  type="radio" name="rating" value="2"><p class="radio_text">2 Star <b class="star">★★</b></p><br>
+				<input  type="radio" name="rating" value="3"><p class="radio_text">3 Star <b class="star">★★★</b></p><br>
+				<input  type="radio" name="rating" value="4"><p class="radio_text">4 Star <b class="star">★★★★</b></p><br>
+				<input  type="radio" name="rating" value="5"><p class="radio_text">5 Star <b class="star">★★★★★</b></p><br>
+			</div>
+		</div>
+		<div class="items">
+			
+		</div>
+		<h1 class="center" style="display:none;left:54%" id="no_result"> No results found </h1>
+	</main>
+</body>
+</html>

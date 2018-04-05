@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+	<link rel="icon" type="image/png" href={{url_for('static', filename = 'img/common/icon_p.png')}}>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/cart.css')}}">
+    <script src="{{url_for('static', filename='js/lib/jquery-3.2.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/cart.js')}}"></script>
+</head>
+<body>
+	<div class="message center_horizontal">
+		<p>message</p>
+	</div>
+	<div class="navbar">
+		<a href='/'><div class="logo"><img class="center_vertical" src="{{url_for('static', filename='img/common/icon.png')}}"></div></a>
+        <div class="search_box"></div>
+		<div class="cart">
+			{% if name == 'none' %}
+				<div class="login center_vertical"><p>Login</p></div>
+				<div class="signup center_vertical"><p>Signup</p></div>
+			{% endif %}
+			{% if name != 'none' %}
+				<img src= "{{url_for('static', filename=image)}}" class="avatar center_vertical">
+			{% endif %}
+			<a href="/cart"><img class="cart_img" src="{{url_for('static', filename='img/common/cart.png')}}"></a>
+			<div class="cart_dot"> {{qty}} </div>
+		</div>
+	</div>
+	<main>
+		<div class="login_box center" id="login">
+			<h1> Login </h1>
+			<input  type="text" name="log_username" class="box" placeholder="username" id="log_username"><br>
+  			<input  type="password" name="log_password" class="box" placeholder="password" id="log_password"><br>
+  			<div class="login_but"	id="log_sub"> Submit </div>
+  			<div class="login_but"	id="log_can"> Cancel </div>
+		</div>
+		<div class="signup_box center" id="signup">
+			<h1> Signup </h1>
+			<input  type="text" name="sign_username" class="box" placeholder="username" id="sign_username"><br>
+  			<input  type="password" name="sign_password" class="box" placeholder="password" id="sign_password"><br>
+  			<div class="login_but"	id="sign_sub"> Submit </div>
+  			<div class="login_but"	id="sign_can"> Cancel </div>
+		</div>
+        <div class="major">
+            <h1> Shopping Cart - ${{payment}}</h1>
+            {% if payment != 0 %}
+            <div class="cart_button" id="complete_purchase"> Complete Purchase </div>
+            {% endif %}
+            {% for item in info %}
+            <div class="item">
+                <div class="item_img"><img class="center" src={{item.image}}></div>
+                <div class="item_desc">
+                    <h1 class="item_header">{{item.item_name}}</h1>
+                    <p><b>Quantity: {{item.qty}}</b></p>
+                    <p class="price">${{item.total_amount}}</p>
+                    <p class="delete_item"> Delete Item </p>
+                    <p class="hidden item_no">{{item.item_id}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% if info == [] %}
+                <h1 class="center" style="color:#c0c0c0;z-index:0"> Cart is Empty </h1>
+            {% endif %}
+        </div>
+        <div class="del_box center">
+            <h1> Are you sure you want to delete this item </h1>
+            <div class="del_but"  id="del_sub"> Submit </div>
+            <div class="del_but"  id="del_can"> Cancel </div>
+        </div>
+        <div class="complete_purchase_box center">
+            <h1 class="center">  ★ ★ ★ ★ ★ <br>Purchase Successful !!<br> ★ ★ ★ ★ ★  </h1>
+        </div>
+	</main>
+</body>
+</html>

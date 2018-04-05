@@ -1,0 +1,31 @@
+	html, html a {-webkit-font-smoothing: antialiased;text-shadow: 1px 1px 1px rgba(0,0,0,0.004);}
+    html{font-family: 'Roboto', sans-serif;width:100vw;height:100vh;overflow:hidden;background:#f0f0f0}
+    body{text-align:center;margin:0;}
+    p{margin:1vh;}
+    textarea{height:15vh !important;resize: none;padding-top:1vh}
+    .center{position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}
+    .center_horizontal{position: absolute;top: 0;left: 50%;margin-right: -50%;transform: translate(-50%, 0)}
+    .center_vertical{position: absolute;top: 50%;left: 0;transform: translate(0, -50%)}
+    .hidden{display:none;}
+    .message{background-color:#fb0;padding:0vh 10vh;display:inline-block;display:none}
+    .navbar{width:100vw;height:10vh;background:#2ac7b2;margin:0;position:absolute;left:0;right:0}
+    .logo{height:10vh;width:10vw;position:relative;}
+    .logo img{max-height:6vh;padding-left:2vw;padding-top:1vh;cursor:pointer;}
+    .logo img:hover{max-height:6.1vh;}
+    .logo img:active{max-height:5.8vh;}
+    .labels{font-size:1.8vh;font-weight:800;color:#6e6e6f;letter-spacing:1px;position:relative;}
+    .input_box{width:30vw;height:5vh;border:none;border:1px solid #cecece;outline:none;background: rgba(0,0,0,0);color:#363636;font-size: 2.2vh;margin-bottom:3vh;letter-spacing:1px;padding-left:0.5vw;border-radius:1vh;}
+    main{width:80vw;margin-left:0vw;height:76vh;margin-top:12vh;display:inline-flex;background-color:#fff;border-radius:5vh;-webkit-box-shadow: 0px 0px 39px 3px rgba(192,192,192,1);-moz-box-shadow: 0px 0px 39px 3px rgba(192,192,192,1);box-shadow: 0px 0px 39px 3px rgba(192,192,192,1);padding:5vh;}
+    .product_details, .product_images{width:50%;height:88vh;display:inline-block;position:relative;}
+    .product_details{text-align:left;}
+    .add_image{width:10vw;height:10vw;border:1px dashed #000; border-radius:2vh;display:inline-block;margin-right:2vw;margin-top:4vh;position:relative;cursor:pointer;transition:0.5s;position:relative;}
+    .add_image:hover{border:4px solid #000;}
+    .add_image:active{background:#000}
+    .add_text{left:45% !important;top: 47% !important;font-size:2vh;font-weight:800;color:#6e6e6f;letter-spacing:1px}
+    .add_text:hover{font-size:2.2vh}
+    .added_img{max-width:8vw;max-height:8vw}
+    .footer_buttons{width:100%;height:10vh;position:absolute;bottom:13vh;display:inline-flex;left: 0;}
+    .footer_button{width:50%;height:10vh;display:inline-block;position:relative;}
+    #submit, #cancel{background-color:#2ac7b2; padding:2vh 6vh;color:#fff;border-radius:5vh;cursor:pointer}
+    #submit:hover, #cancel:hover{background-color:#5880ca}
+    #submit:active, #cancel:active{background-color:#45659e}
